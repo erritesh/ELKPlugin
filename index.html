@@ -1,9 +1,27 @@
 <!DOCTYPE html>
-<html ng-app="ExampleApp">
+<html ng-app="CombineModule">
 <head>
   <title>Datetime input UI element for AngularJS</title>
   <link rel="stylesheet" type="text/css" href="dist/datetime-input.css">
   <meta name="viewport" content="width=500,user-scalable=0">
+<!-- JQUERY -->
+     <script src="vendor/jquery/dist/jquery.js"></script>     
+     <script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+     <link rel="stylesheet" href="vendor/datatables/media/css/jquery.dataTables.min.css">
+  
+     <!-- ANGULAR -->
+     <script src="vendor/angular/angular.js"></script>
+   
+     <script src="src/angular-datatables.directive.js"></script>
+     <script src="src/angular-datatables.instances.js"></script>
+     <script src="src/angular-datatables.util.js"></script>
+     <script src="src/angular-datatables.renderer.js"></script>
+     <script src="src/angular-datatables.factory.js"></script>
+     <script src="src/angular-datatables.options.js"></script>
+     <script src="src/angular-datatables.js"></script>
+ 
+     
+
   <style>
     body {
       box-sizing: border-box;
@@ -17,28 +35,60 @@
     }
   </style>
 </head>
-<body ng-controller="MainCtrl">
+<body>
 
-  <h1>Date</h1>
-  <date-input date="now" on-change="print(now)" placeholder="Click Me"></date-input>
+ <h3>Select Date-Time</h3>
+ <div ng-controller="MainCtrl">
+  <datetime-input datetime="now" on-change="print(now)" placeholder="Select"></datetime-input>
+ 
+  
+   </div>
 
-  <h1>Time</h1>
-  <time-input time="now" on-change="print(now)" placeholder="Click Me"></time-input>
-
-  <h1>Datetime</h1>
-  <datetime-input datetime="now" on-change="print(now)" placeholder="Click Me"></datetime-input>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js" charset="utf-8"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js" charset="utf-8"></script>
-  <script src="dist/datetime-input.js"></script>
 
   <script>
-    angular.module('ExampleApp', ['g1b.datetime-input']).
+  angular.module('ExampleApp', ['g1b.datetime-input']).
       controller('MainCtrl', function ($scope) {
         $scope.print = function (datetime) {
           console.log('datetime', datetime);
         };
       });
+  angular.module('angularDatatableModule', ['datatables']); 
+
+  
+
+  angular.module("CombineModule", ["ExampleApp", "angularDatatableModule"]);
   </script>
+
+
+<table datatable="" class="row-border hover">
+      <thead>
+       <tr>
+       <th>ID</th>
+       <th>First name</th>
+       <th>Last name</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td>1</td>
+         <td>Jayesh</td>
+         <td>Patel</td>
+       </tr>
+       <tr>
+         <td>2</td>
+         <td>Khyati</td>
+         <td>Patel</td>
+       </tr>
+       <tr>
+         <td>3</td>
+         <td>Alex</td>
+         <td>Sebastian</td>
+       </tr>
+      </tbody>
+    </table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js" charset="utf-8"></script>
+  <script src="dist/datetime-input.js"></script>
+  
 </body>
 </html>
